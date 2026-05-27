@@ -150,9 +150,10 @@
   .section-title{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
   .section-title::after{content:'';flex:1;height:1px;background:var(--border-color);}
 
-  /* ── DISCLAIMER ── */
-  .disclaimer{margin-top:14px;padding:10px 16px;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;font-size:0.78rem;color:var(--text-muted);letter-spacing:0.3px;}
-  .disclaimer span{color:var(--gold);font-weight:700;}
+  /* ── ACHIEVEMENT NOTE ── */
+  .achievement-note{margin-top:16px;font-size:0.76rem;color:#4b5563;letter-spacing:0.3px;text-align:right;padding-right:2px;}
+  .achievement-note .ach-pulls{color:var(--green);opacity:0.8;font-weight:700;}
+  .achievement-note .ach-tbd{color:#374151;font-style:italic;}
 
   /* ── FOOTER ── */
   footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border-color);text-align:center;color:var(--text-muted);font-size:0.8rem;line-height:1.8;}
@@ -225,13 +226,11 @@
       </table>
     </div>
 
-    <div class="disclaimer">
-      Excluding Achievements and other Activities not mentioned. Values marked <span>???</span> are unknown and excluded from totals. Daily Income entries are multiplied by the patch duration.
-    </div>
+    <div class="achievement-note" id="achievementNote"></div>
 
   </div>
   <footer>
-    <div>Not affiliated with Hotta Studio.</div>
+    <div>All game-related images and assets are copyrighted and trademarked by Hotta Studio.</div>
     <div class="footer-last-update">Last Update: May 27, 2026</div>
   </footer>
 </main>
@@ -288,7 +287,7 @@ async function loadPatches() {
   results.forEach(data => {
     if (!data) return;
     const id = data.patch;
-    PATCHES[id] = { days: data.days };
+    PATCHES[id] = { days: data.days, achievementAnnulith: data.achievementAnnulith ?? null };
     data.activities.forEach(act => {
       ACTIVITIES.push({ ...act, patch: id });
     });
@@ -341,7 +340,7 @@ function nextPatch(p) {
 function warnSVG(patchId) {
   return `<span class="warn-icon">
     <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5L2 20.5h20L12 2.5z" fill="rgba(251,146,60,0.15)" stroke="#fb923c" stroke-width="1.5" stroke-linejoin="round"/><line x1="12" y1="9" x2="12" y2="14" stroke="#fb923c" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="#fb923c"/></svg>
-    <span class="warn-tooltip">These rewards do not reset between patches — collecting them now means they won't be available again in patch ${nextPatch(patchId)}.</span>
+    <span class="warn-tooltip">These rewards do not reset between patches.</span>
   </span>`;
 }
 
@@ -393,6 +392,21 @@ function renderSummary(acts, days) {
   }).join("");
   document.getElementById("f2pResources").innerHTML     = rows(f2p);
   document.getElementById("premiumResources").innerHTML = rows(prem);
+}
+
+// ═══════════════════════════════════════════════════════
+//  ACHIEVEMENT NOTE
+// ═══════════════════════════════════════════════════════
+function renderAchievementNote(patchData) {
+  const el = document.getElementById("achievementNote");
+  if (!el) return;
+  const ann = patchData.achievementAnnulith;
+  if (ann === null || ann === undefined) {
+    el.innerHTML = `Achievements: <span class="ach-tbd">pulls TBD</span> — data not yet available for this patch.`;
+  } else {
+    const pulls = Math.floor(ann / 160);
+    el.innerHTML = `From achievements: <span class="ach-pulls">+${pulls} pulls</span> (${ann.toLocaleString()} Annulith) — extra, not included in totals above.`;
+  }
 }
 
 // ═══════════════════════════════════════════════════════
@@ -553,6 +567,7 @@ function render() {
   document.getElementById("patchInfo").innerHTML =
     `Patch <strong>${currentPatch}</strong> &nbsp;·&nbsp; Duration: <strong>${days} days</strong> &nbsp;·&nbsp; Activities: <strong>${acts.length}</strong>`;
   renderSummary(acts, days);
+  renderAchievementNote(PATCHES[currentPatch]);
   renderTable(acts, days);
 }
 
