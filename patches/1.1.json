@@ -1,6 +1,7 @@
 {
   "patch": "1.1",
   "days": 35,
+  "lastUpdate": "May 27, 2026",
   "achievementAnnulith": null,
   "activities": [
     { "name": "Daily Quest",                         "type": ["Normal","Daily Income"], "annulith": 60,    "fab": 0,     "solid": 0,  "key": 0  },

@@ -41,9 +41,9 @@
   .filter-inline-label{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:bold;white-space:nowrap;}
 
   /* History button */
-  .btn-history{background-color:var(--bg-color);border:1px solid var(--border-color);color:var(--text-muted);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:0.85rem;font-weight:600;transition:all 0.2s;letter-spacing:0.5px;display:inline-flex;align-items:center;gap:7px;margin-left:auto;}
-  .btn-history:hover{border-color:var(--accent-color);background-color:rgba(59,130,246,0.08);color:var(--accent-color);}
-  .btn-history svg{width:15px;height:15px;flex-shrink:0;transition:color 0.2s;}
+  .btn-history{background:linear-gradient(135deg,rgba(248,113,113,0.15),rgba(248,113,113,0.05));border:1px solid rgba(248,113,113,0.4);color:var(--red);padding:8px 16px;border-radius:10px;cursor:pointer;font-size:0.85rem;font-weight:700;transition:all 0.25s;letter-spacing:0.5px;display:inline-flex;align-items:center;gap:8px;margin-left:auto;box-shadow:0 0 10px rgba(248,113,113,0.1);}
+  .btn-history:hover{border-color:var(--red);background:linear-gradient(135deg,rgba(248,113,113,0.28),rgba(248,113,113,0.1));box-shadow:0 0 18px rgba(248,113,113,0.25);color:#fff;}
+  .btn-history .hist-icon{width:18px;height:18px;flex-shrink:0;}
 
   /* Loading state */
   .loading-msg{text-align:center;padding:40px;color:var(--text-muted);font-size:0.9rem;}
@@ -183,11 +183,12 @@
       </div>
       <div class="divider-line"></div>
       <button class="btn-history" id="btnHistory" onclick="openHistory()">
-        <!-- Clock / history icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <polyline points="12 7 12 12 15.5 15.5"/>
-          <path d="M3.05 10.5A9 9 0 0 1 21 12" stroke-dasharray="2 2" opacity="0.4"/>
+        <!-- Leaderboard / podium icon -->
+        <svg class="hist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="14" width="4" height="8" rx="1"/>
+          <rect x="10" y="9" width="4" height="13" rx="1"/>
+          <rect x="18" y="11" width="4" height="11" rx="1"/>
+          <path d="M4 11l3-3 3 3 3-5 3 2" stroke-width="1.8" opacity="0.6"/>
         </svg>
         History
       </button>
@@ -231,7 +232,7 @@
   </div>
   <footer>
     <div>All game-related images and assets are copyrighted and trademarked by Hotta Studio.</div>
-    <div class="footer-last-update">Last Update: May 27, 2026</div>
+    <div class="footer-last-update" id="footerLastUpdate">Last Update: —</div>
   </footer>
 </main>
 
@@ -287,7 +288,7 @@ async function loadPatches() {
   results.forEach(data => {
     if (!data) return;
     const id = data.patch;
-    PATCHES[id] = { days: data.days, achievementAnnulith: data.achievementAnnulith ?? null };
+    PATCHES[id] = { days: data.days, achievementAnnulith: data.achievementAnnulith ?? null, lastUpdate: data.lastUpdate ?? null };
     data.activities.forEach(act => {
       ACTIVITIES.push({ ...act, patch: id });
     });
@@ -300,7 +301,22 @@ async function loadPatches() {
     return;
   }
 
+  // Sort patches semantically (X.Y) and select the highest one
+  available.sort((a, b) => {
+    const [aMaj, aMin] = a.split(".").map(Number);
+    const [bMaj, bMin] = b.split(".").map(Number);
+    return aMaj !== bMaj ? aMaj - bMaj : aMin - bMin;
+  });
   currentPatch = available[available.length - 1];  // default: latest patch
+
+  // Set last update from the most recent patch
+  const latestPatchData = PATCHES[currentPatch];
+  const footerEl = document.getElementById("footerLastUpdate");
+  if (footerEl) {
+    footerEl.textContent = latestPatchData.lastUpdate
+      ? `Last Update: ${latestPatchData.lastUpdate}`
+      : "Last Update: —";
+  }
   buildPatchDropdown();
   setupSortHeaders();
   render();
@@ -350,7 +366,12 @@ function warnSVG(patchId) {
 function buildPatchDropdown() {
   const sel = document.getElementById("patchSelect");
   sel.innerHTML = "";
-  Object.keys(PATCHES).forEach(p => {
+  const sorted = Object.keys(PATCHES).sort((a, b) => {
+    const [aMaj, aMin] = a.split(".").map(Number);
+    const [bMaj, bMin] = b.split(".").map(Number);
+    return aMaj !== bMaj ? aMaj - bMaj : aMin - bMin;
+  });
+  sorted.forEach(p => {
     const opt = document.createElement("option");
     opt.value = p;
     opt.textContent = `Patch ${p}`;
