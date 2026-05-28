@@ -26,7 +26,7 @@
     { "name": "Hunter's Crucible",                   "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Fight Championship",                  "type": ["Event"],                 "annulith": "???", "fab": "???", "solid": 0,  "key": 0  },
     { "name": "Character Trial",                     "type": ["Event"],                 "annulith": 40,    "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "NEW Map (exploration)",               "type": ["Event"],                 "annulith": "???", "fab": "???", "solid": 0,  "key": 0  },
+    { "name": "NEW Map (exploration)",               "type": ["Event"],                 "annulith": "???", "fab": 3, "solid": 0,  "key": 0  },
     { "name": "NEW Quests (Main, Episode..)",        "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "NEW High Risk Commission",            "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  }
   ]
