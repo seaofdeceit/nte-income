@@ -16,7 +16,7 @@
     { "name": "Codes",                               "type": ["Special"],               "annulith": 300,   "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Compensation Rewards",                "type": ["Special"],               "annulith": 600, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Twitch Drops",                        "type": ["Special"],               "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "What's Baking",                       "type": ["Event"],                 "annulith": 500, "fab": 11, "solid": 0,  "key": 0  },
+    { "name": "What's Baking",                       "type": ["Event"],                 "annulith": 400, "fab": 2, "solid": 0,  "key": 0  },
     { "name": "Underground Circuit",                 "type": ["Event"],                 "annulith": 600, "fab": 4, "solid": 0,  "key": 0  },
     { "name": "Sunward Travelogue",                  "type": ["Event"],                 "annulith": 300, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "The Long Dream",                      "type": ["Event"],                 "annulith": 400, "fab": 0,     "solid": 0,  "key": 0  },
