@@ -2,7 +2,7 @@
   "patch": "1.1",
   "days": 35,
   "lastUpdate": "May 28, 2026",
-  "achievementAnnulith": null,
+  "achievementAnnulith": 150,
   "activities": [
     { "name": "Daily Quest",                         "type": ["Normal","Daily Income"], "annulith": 60,    "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Standard Hunter Supplies",            "type": ["Normal"],                "annulith": 0,     "fab": 5,     "solid": 0,  "key": 0  },
@@ -14,20 +14,20 @@
     { "name": "Circle Gift",                         "type": ["Special"],               "annulith": 0,     "fab": 0,     "solid": 10, "key": 0  },
     { "name": "Hethereau Special Gift Pack",         "type": ["Special"],               "annulith": 0,     "fab": 5,     "solid": 0,  "key": 5  },
     { "name": "Codes",                               "type": ["Special"],               "annulith": 300,   "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "Compensation Rewards",                "type": ["Special"],               "annulith": 600, "fab": 0,     "solid": 0,  "key": 0  },
+    { "name": "Maintenance and Compensation",                "type": ["Special"],               "annulith": 600, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Twitch Drops",                        "type": ["Special"],               "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "What's Baking",                       "type": ["Event"],                 "annulith": 400, "fab": 2, "solid": 0,  "key": 0  },
-    { "name": "Underground Circuit",                 "type": ["Event"],                 "annulith": 700, "fab": 6, "solid": 0,  "key": 0  },
+    { "name": "What's Baking",                       "type": ["Event"],                 "annulith": 500, "fab": 10, "solid": 0,  "key": 0  },
+    { "name": "Underground Circuit",                 "type": ["Event"],                 "annulith": 600, "fab": 4, "solid": 0,  "key": 0  },
     { "name": "Sunward Travelogue",                  "type": ["Event"],                 "annulith": 300, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "The Long Dream",                      "type": ["Event"],                 "annulith": 400, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Beyond the Rails - Phase 1",                    "type": ["Event"],                 "annulith": 800,  "fab": 0,     "solid": 0,  "key": 0  },
       { "name": "Beyond the Rails - Phase 2",                    "type": ["Event"],                 "annulith": 800,  "fab": 0,     "solid": 0,  "key": 0  },
         { "name": "Beyond the Rails - Phase 3",                    "type": ["Event"],                 "annulith": 800,  "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "Hunter's Crucible",                   "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
+    { "name": "Hunter's Crucible",                   "type": ["Event"],                 "annulith": 700, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Fight Championship",                  "type": ["Event"],                 "annulith": "???", "fab": "???", "solid": 0,  "key": 0  },
     { "name": "Character Trial",                     "type": ["Event"],                 "annulith": 40,    "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "NEW Map (exploration)",               "type": ["Event"],                 "annulith": "???", "fab": 3, "solid": 0,  "key": 0  },
-    { "name": "NEW Quests (Main, Episode..)",        "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
-    { "name": "NEW High Risk Commission",            "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  }
+    { "name": "NEW Map (Exploration)",               "type": ["Event"],                 "annulith": "???", "fab": 3, "solid": 0,  "key": 0  },
+    { "name": "NEW Quests",        "type": ["Event"],                 "annulith": "???", "fab": 0,     "solid": 0,  "key": 0  },
+    { "name": "NEW High Risk Commission",            "type": ["Event"],                 "annulith": 60, "fab": 0,     "solid": 0,  "key": 0  }
   ]
 }
