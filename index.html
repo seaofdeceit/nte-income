@@ -446,7 +446,7 @@ function renderAchievementNote(patchData) {
     el.innerHTML = `Achievements: <span class="ach-tbd">pulls TBD</span> — data not yet available for this patch.`;
   } else {
     const pulls = Math.floor(ann / 160);
-    el.innerHTML = `From achievements: <span class="ach-pulls">+${pulls} pulls</span> (${ann.toLocaleString()} Annulith) — extra, not included in totals above.`;
+    el.innerHTML = `From achievements and bonds: <span class="ach-pulls">+${pulls} pulls</span> (${ann.toLocaleString()} Annulith) — extra, not included in totals above.`;
   }
 }
 
