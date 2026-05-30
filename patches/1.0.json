@@ -1,0 +1,20 @@
+{
+  "patch": "1.0",
+  "days": 35,
+  "lastUpdate": "June 2, 2026",
+  "achievementAnnulith": 4740,
+  "activities": [
+    { "name": "Daily Quest",                         "type": ["Normal","Daily Income"], "annulith": 60,    "fab": 0,     "solid": 0,  "key": 0  },
+    { "name": "Standard Hunter Supplies",            "type": ["Normal"],                "annulith": 0,     "fab": 5,     "solid": 0,  "key": 0  },
+    { "name": "Elite Hunter Supplies",               "type": ["Paid"],                  "annulith": 680,   "fab": 2,     "solid": 4,  "key": 0  },
+    { "name": "Riftcrystal Mining Permit",           "type": ["Paid","Daily Income"],   "annulith": 90,    "fab": 0,     "solid": 0,  "key": 0  },
+    { "name": "Lost Exchange (April)",                "type": ["Normal","Warning"],      "annulith": 0,     "fab": 5,     "solid": 5,  "key": 20 },
+    { "name": "Lost Exchange (May)",                "type": ["Normal","Warning"],      "annulith": 0,     "fab": 5,     "solid": 5,  "key": 20 },
+    { "name": "Hunter Exchange",                     "type": ["Normal"],                "annulith": 500,   "fab": 0,     "solid": 0,  "key": 40 },
+    { "name": "Freebies at Launch",                         "type": ["Special"],               "annulith": 2500,     "fab": 65,     "solid": 22, "key": 25  },
+    { "name": "A Letter from Hethereau",         "type": ["Special"],               "annulith": 0,     "fab": 0,     "solid": 0,  "key": 10  },
+    { "name": "Twitch Drops",                        "type": ["Special"],               "annulith": 50, "fab": 0,     "solid": 0,  "key": 0  },
+    { "name": "Gameplay Rewards (only for 1.0)",                       "type": ["Event"],                 "annulith": 720, "fab": 0, "solid": 0,  "key": 0  },
+    { "name": "Gameplay Rewards (Permanent)",                       "type": ["Event"],                 "annulith": 17385, "fab": 89, "solid": 0,  "key": 0  }
+]
+}
