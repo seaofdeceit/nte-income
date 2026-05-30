@@ -1,8 +1,8 @@
 {
   "patch": "1.1",
   "days": 35,
-  "lastUpdate": "May 28, 2026",
-  "achievementAnnulith": 150,
+  "lastUpdate": "June 3, 2026",
+  "achievementAnnulith": 310,
   "activities": [
     { "name": "Daily Quest",                         "type": ["Normal","Daily Income"], "annulith": 60,    "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Standard Hunter Supplies",            "type": ["Normal"],                "annulith": 0,     "fab": 5,     "solid": 0,  "key": 0  },
