@@ -15,6 +15,6 @@
     { "name": "A Letter from Hethereau",         "type": ["Special"],               "annulith": 0,     "fab": 10,     "solid": 0,  "key": 0  },
     { "name": "Twitch Drops",                        "type": ["Special"],               "annulith": 50, "fab": 0,     "solid": 0,  "key": 0  },
     { "name": "Gameplay Rewards (only for 1.0)",                       "type": ["Event"],                 "annulith": 720, "fab": 0, "solid": 0,  "key": 0  },
-    { "name": "Gameplay Rewards (Permanent)",                       "type": ["Event"],                 "annulith": 17385, "fab": 89, "solid": 0,  "key": 0  }
+    { "name": "Gameplay Rewards (Permanent)",                       "type": ["Event"],                 "annulith": 17955, "fab": 89, "solid": 0,  "key": 0  }
 ]
 }
