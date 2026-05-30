@@ -49,15 +49,78 @@
   .loading-msg{text-align:center;padding:40px;color:var(--text-muted);font-size:0.9rem;}
 
   /* History modal */
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1000;align-items:center;justify-content:center;}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:center;justify-content:center;}
   .modal-overlay.open{display:flex;}
-  .modal-box{background:var(--card-bg);border:1px solid var(--border-color);border-radius:18px;padding:32px;max-width:700px;width:90%;max-height:80vh;overflow-y:auto;position:relative;}
-  .modal-title{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px;}
-  .modal-sub{font-size:0.8rem;color:var(--text-muted);margin-bottom:24px;}
+  .modal-box{background:var(--card-bg);border:1px solid var(--border-color);border-radius:20px;padding:32px;max-width:860px;width:95%;max-height:88vh;overflow-y:auto;position:relative;}
+  .modal-title{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:4px;}
+  .modal-sub{font-size:0.8rem;color:var(--text-muted);margin-bottom:28px;}
   .modal-close{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;line-height:1;}
   .modal-close:hover{color:#fff;}
-  .history-placeholder{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:0.9rem;}
-  .history-placeholder .ph-icon{font-size:2.5rem;margin-bottom:12px;opacity:0.4;}
+
+  /* History resource tabs */
+  .hist-res-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;}
+  .hist-res-tab{padding:6px 16px;border-radius:8px;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;cursor:pointer;border:1px solid var(--border-color);color:var(--text-muted);background:transparent;transition:all 0.15s;}
+  .hist-res-tab:hover{color:#fff;border-color:#fff;}
+  .hist-res-tab.active{background:var(--accent-color);color:#fff;border-color:var(--accent-color);}
+
+  /* Major version section */
+  .hist-section{margin-bottom:28px;}
+  .hist-section:last-child{margin-bottom:0;}
+  .hist-section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .hist-section-label{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);font-weight:700;}
+  .hist-section-label span{color:var(--accent-color);}
+  .hist-section-badge{font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding:2px 9px;border-radius:6px;background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.25);}
+  .hist-section-header::after{content:'';flex:1;height:1px;background:var(--border-color);}
+  .hist-section-summary{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+  .hist-stat{background:#0d1625;border:1px solid var(--border-color);border-radius:10px;padding:10px 16px;}
+  .hist-stat-label{color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;font-size:0.62rem;}
+  .hist-stat-val{color:#fff;font-weight:800;font-size:1rem;}
+  .hist-stat-val.green{color:var(--green);}
+  .hist-stat-val.up{color:var(--green);}
+  .hist-stat-val.down{color:var(--red);}
+
+  /* Collapsed (older) section accordion */
+  .hist-accordion-header{display:flex;align-items:center;gap:12px;padding:11px 16px;background:#0d1625;border:1px solid var(--border-color);border-radius:12px;cursor:pointer;user-select:none;transition:background 0.15s,border-color 0.15s;margin-bottom:0;}
+  .hist-accordion-header:hover{background:#111c2e;border-color:rgba(59,130,246,0.3);}
+  .hist-accordion-header.open{border-radius:12px 12px 0 0;border-bottom-color:transparent;}
+  .hist-accordion-label{font-size:0.72rem;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;color:var(--text-muted);}
+  .hist-accordion-label span{color:#60a5fa;}
+  .hist-accordion-meta{display:flex;gap:16px;margin-left:8px;flex:1;}
+  .hist-accordion-stat{font-size:0.7rem;color:var(--text-muted);}
+  .hist-accordion-stat strong{color:#fff;font-weight:700;}
+  .hist-accordion-stat.up{color:var(--green);}
+  .hist-accordion-stat.down{color:var(--red);}
+  .hist-accordion-chevron{margin-left:auto;color:var(--text-muted);font-size:0.65rem;transition:transform 0.22s;flex-shrink:0;}
+  .hist-accordion-chevron.open{transform:rotate(180deg);}
+  .hist-accordion-body{border:1px solid var(--border-color);border-top:none;border-radius:0 0 12px 12px;overflow:hidden;max-height:0;opacity:0;transition:max-height 0.35s ease,opacity 0.25s ease;}
+  .hist-accordion-body.open{max-height:800px;opacity:1;}
+  .hist-accordion-inner{padding:20px 20px 16px;}
+
+  /* Bar chart */
+  .hist-chart-wrap{background:#0d1625;border-radius:14px;padding:24px 20px 12px;margin-bottom:20px;border:1px solid var(--border-color);}
+  .hist-bars{display:flex;align-items:flex-end;gap:10px;height:160px;padding-bottom:4px;}
+  .hist-bar-group{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0;}
+  .hist-bar-stack{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;}
+  .hist-bar{width:76%;border-radius:6px 6px 0 0;transition:opacity 0.15s;position:relative;min-height:4px;}
+  .hist-bar:hover{opacity:0.8;}
+  .hist-bar.f2p-bar{background:linear-gradient(180deg,var(--green),rgba(52,211,153,0.55));}
+  .hist-bar-val{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:0.58rem;color:var(--text-muted);white-space:nowrap;font-weight:700;}
+  .hist-bar-label{font-size:0.68rem;color:var(--text-muted);margin-top:8px;letter-spacing:1px;font-weight:700;text-align:center;}
+  .hist-bar-days{font-size:0.58rem;color:#374151;margin-top:2px;}
+
+  /* History table */
+  .hist-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+  .hist-table th{padding:8px 14px;text-align:left;font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border-color);font-weight:700;}
+  .hist-table th:not(:first-child){text-align:right;}
+  .hist-table td{padding:9px 14px;border-bottom:1px solid rgba(34,49,77,0.4);color:#fff;}
+  .hist-table td:not(:first-child){text-align:right;font-weight:700;font-variant-numeric:tabular-nums;}
+  .hist-table tr:last-child td{border-bottom:none;}
+  .hist-table tr:hover td{background:rgba(255,255,255,0.02);}
+  .hist-patch-cell{font-weight:800;color:var(--accent-color);}
+  .hist-days-cell{color:var(--text-muted);font-size:0.75rem;font-weight:400;}
+  .hist-delta{font-size:0.68rem;font-weight:700;margin-left:4px;}
+  .hist-delta.up{color:var(--green);}
+  .hist-delta.down{color:var(--red);}
 
   /* ── GROUP SECTION ── */
   .group-section{margin-bottom:0;}
@@ -304,12 +367,10 @@
 <div class="modal-overlay" id="historyModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeHistory()">×</button>
-    <div class="modal-title">Patch History</div>
-    <div class="modal-sub">Comparison of rewards across patches — chart coming soon</div>
-    <div class="history-placeholder">
-      <div class="ph-icon">📊</div>
-      <div>No history data yet. Once more patches are added, a comparison chart will appear here showing Annulith, Fabricated Dice, Solid Dice, and Tri-Key totals across patches.</div>
-    </div>
+    <div class="modal-title">Patch History — F2P</div>
+    <div class="modal-sub">F2P income trend across game versions</div>
+    <div class="hist-res-tabs" id="histResTabs"></div>
+    <div id="histSections"></div>
   </div>
 </div>
 
@@ -692,7 +753,190 @@ function setupSortHeaders() {
 // ═══════════════════════════════════════════════════════
 //  HISTORY MODAL
 // ═══════════════════════════════════════════════════════
+const HIST_RES_LABELS = {
+  annulith: "Annulith",
+  fab:      "Fabricated Dice",
+  solid:    "Solid Dice",
+  key:      "Tri-Key",
+};
+let histActiveRes = "annulith";
+
+function buildHistoryData() {
+  return Object.keys(PATCHES).sort((a,b) => {
+    const [am,an] = a.split(".").map(Number), [bm,bn] = b.split(".").map(Number);
+    return am !== bm ? am-bm : an-bn;
+  }).map(p => {
+    const acts = ACTIVITIES.filter(a => a.patch === p);
+    const days = PATCHES[p].days;
+    const f2p  = calcTotals(acts, days, false);
+    return { patch: p, days, f2p };
+  });
+}
+
+function renderHistoryModal() {
+  const data = buildHistoryData();
+  const res  = histActiveRes;
+
+  // Resource tabs
+  document.getElementById("histResTabs").innerHTML = Object.entries(HIST_RES_LABELS).map(([k,v]) =>
+    `<button class="hist-res-tab${k===res?" active":""}" onclick="setHistRes('${k}')">${v}</button>`
+  ).join("");
+
+  // Group by major version, newest first
+  const byMajor = {};
+  data.forEach(d => {
+    const maj = d.patch.split(".")[0];
+    if (!byMajor[maj]) byMajor[maj] = [];
+    byMajor[maj].push(d);
+  });
+  const majors    = Object.keys(byMajor).sort((a,b) => Number(b) - Number(a));
+  const latestMaj = majors[0];
+  const olderMajs = majors.slice(1);
+
+  const HEIGHT = 140;
+
+  function sectionStats(group) {
+    const vals  = group.map(d => d.f2p[res]);
+    const avg   = Math.round(vals.reduce((s,v) => s+v, 0) / vals.length);
+    const best  = Math.max(...vals);
+    const trend = vals.length > 1 ? vals[vals.length-1] - vals[0] : null;
+    return { avg, best, trend };
+  }
+
+  function chartHtml(group, maxVal) {
+    return `<div class="hist-chart-wrap">
+      <div class="hist-bars">
+        ${group.map(d => {
+          const h = Math.max(Math.round((d.f2p[res] / maxVal) * HEIGHT), d.f2p[res]>0?6:0);
+          return `<div class="hist-bar-group">
+            <div class="hist-bar-stack">
+              ${h > 0
+                ? `<div class="hist-bar f2p-bar" style="height:${h}px;"><span class="hist-bar-val">${d.f2p[res].toLocaleString()}</span></div>`
+                : `<div style="height:4px;width:76%;background:#22314d;border-radius:3px;align-self:flex-end;"></div>`}
+            </div>
+            <div class="hist-bar-label">${d.patch}</div>
+            <div class="hist-bar-days">${d.days}d</div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }
+
+  function tableHtml(group) {
+    const pullsHeader = res === "annulith" ? "<th>Pulls</th>" : "";
+    return `<table class="hist-table">
+      <thead><tr>
+        <th>Patch</th><th>Days</th>
+        <th>F2P ${HIST_RES_LABELS[res]}</th>
+        ${pullsHeader}
+        <th>Δ vs prev</th>
+      </tr></thead>
+      <tbody>
+        ${group.map((d, i) => {
+          const prev  = i > 0 ? group[i-1] : null;
+          const delta = prev ? d.f2p[res] - prev.f2p[res] : null;
+          const dHtml = delta !== null
+            ? `<span class="hist-delta ${delta>=0?"up":"down"}">${delta>=0?"▲":"▼"} ${Math.abs(delta).toLocaleString()}</span>`
+            : `<span style="color:#374151">—</span>`;
+          const pullsCell = res === "annulith" ? `<td>${Math.floor(d.f2p[res]/160)} pulls</td>` : "";
+          return `<tr>
+            <td class="hist-patch-cell">${d.patch}</td>
+            <td class="hist-days-cell">${d.days}</td>
+            <td>${d.f2p[res].toLocaleString()}</td>
+            ${pullsCell}
+            <td>${dHtml}</td>
+          </tr>`;
+        }).join("")}
+      </tbody>
+    </table>`;
+  }
+
+  let html = "";
+
+  // Latest major — fully expanded
+  if (latestMaj) {
+    const group  = byMajor[latestMaj];
+    const maxVal = Math.max(...group.map(d => d.f2p[res]), 1);
+    const { avg, best, trend } = sectionStats(group);
+    const trendClass = trend === null ? "" : trend >= 0 ? "up" : "down";
+    const trendLabel = trend === null ? "—" : (trend >= 0 ? "▲ " : "▼ ") + Math.abs(trend).toLocaleString();
+
+    html += `<div class="hist-section">
+      <div class="hist-section-header">
+        <div class="hist-section-label">Version <span>${latestMaj}.x</span></div>
+        <span class="hist-section-badge">Latest</span>
+      </div>
+      <div class="hist-section-summary">
+        <div class="hist-stat">
+          <div class="hist-stat-label">Patches</div>
+          <div class="hist-stat-val">${group.length}</div>
+        </div>
+        <div class="hist-stat">
+          <div class="hist-stat-label">Avg F2P</div>
+          <div class="hist-stat-val green">${avg.toLocaleString()}</div>
+        </div>
+        <div class="hist-stat">
+          <div class="hist-stat-label">Best Patch</div>
+          <div class="hist-stat-val green">${best.toLocaleString()}</div>
+        </div>
+        ${trend !== null ? `<div class="hist-stat">
+          <div class="hist-stat-label">Trend</div>
+          <div class="hist-stat-val ${trendClass}">${trendLabel}</div>
+        </div>` : ""}
+      </div>
+      ${chartHtml(group, maxVal)}
+      ${tableHtml(group)}
+    </div>`;
+  }
+
+  // Older majors — collapsed accordions
+  olderMajs.forEach(maj => {
+    const group  = byMajor[maj];
+    const maxVal = Math.max(...group.map(d => d.f2p[res]), 1);
+    const { avg, best, trend } = sectionStats(group);
+    const trendClass = trend === null ? "" : trend >= 0 ? "up" : "down";
+    const trendLabel = trend === null ? "—" : (trend >= 0 ? "▲ " : "▼ ") + Math.abs(trend).toLocaleString();
+    const uid = `acc-${maj}`;
+
+    html += `<div class="hist-section">
+      <div class="hist-accordion-header" id="hdr-${uid}" onclick="toggleAccordion('${uid}')">
+        <div class="hist-accordion-label">Version <span>${maj}.x</span></div>
+        <div class="hist-accordion-meta">
+          <span class="hist-accordion-stat">${group.length} patch${group.length>1?"es":""}</span>
+          <span class="hist-accordion-stat">Avg <strong>${avg.toLocaleString()}</strong></span>
+          <span class="hist-accordion-stat">Best <strong>${best.toLocaleString()}</strong></span>
+          ${trend !== null ? `<span class="hist-accordion-stat ${trendClass}">${trendLabel}</span>` : ""}
+        </div>
+        <span class="hist-accordion-chevron" id="chv-${uid}">▼</span>
+      </div>
+      <div class="hist-accordion-body" id="body-${uid}">
+        <div class="hist-accordion-inner">
+          ${chartHtml(group, maxVal)}
+          ${tableHtml(group)}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById("histSections").innerHTML = html;
+}
+
+function setHistRes(res) {
+  histActiveRes = res;
+  renderHistoryModal();
+}
+
+function toggleAccordion(uid) {
+  const body = document.getElementById("body-" + uid);
+  const chv  = document.getElementById("chv-"  + uid);
+  const hdr  = document.getElementById("hdr-"  + uid);
+  const open = body.classList.toggle("open");
+  chv.classList.toggle("open", open);
+  hdr.classList.toggle("open", open);
+}
+
 function openHistory() {
+  renderHistoryModal();
   document.getElementById("historyModal").classList.add("open");
 }
 function closeHistory() {
