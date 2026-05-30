@@ -70,7 +70,6 @@
   .hist-section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
   .hist-section-label{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);font-weight:700;}
   .hist-section-label span{color:var(--accent-color);}
-  .hist-section-badge{font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding:2px 9px;border-radius:6px;background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.25);}
   .hist-section-header::after{content:'';flex:1;height:1px;background:var(--border-color);}
   .hist-section-summary{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
   .hist-stat{background:#0d1625;border:1px solid var(--border-color);border-radius:10px;padding:10px 16px;}
@@ -815,9 +814,8 @@ function renderHistoryModal() {
   function sectionStats(group) {
     const vals  = group.map(d => d.f2p[res]);
     const avg   = Math.round(vals.reduce((s,v) => s+v, 0) / vals.length);
-    const best  = Math.max(...vals);
     const trend = vals.length > 1 ? vals[vals.length-1] - vals[0] : null;
-    return { avg, best, trend };
+    return { avg, trend };
   }
 
   function chartHtml(group, maxVal) {
@@ -874,14 +872,13 @@ function renderHistoryModal() {
   if (latestMaj) {
     const group  = byMajor[latestMaj];
     const maxVal = Math.max(...group.map(d => d.f2p[res]), 1);
-    const { avg, best, trend } = sectionStats(group);
+    const { avg, trend } = sectionStats(group);
     const trendClass = trend === null ? "" : trend >= 0 ? "up" : "down";
     const trendLabel = trend === null ? "—" : (trend >= 0 ? "▲ " : "▼ ") + Math.abs(trend).toLocaleString();
 
     html += `<div class="hist-section">
       <div class="hist-section-header">
         <div class="hist-section-label">Version <span>${latestMaj}.x</span></div>
-        <span class="hist-section-badge">Latest</span>
       </div>
       <div class="hist-section-summary">
         <div class="hist-stat">
@@ -891,10 +888,6 @@ function renderHistoryModal() {
         <div class="hist-stat">
           <div class="hist-stat-label">Avg F2P</div>
           <div class="hist-stat-val green">${avg.toLocaleString()}</div>
-        </div>
-        <div class="hist-stat">
-          <div class="hist-stat-label">Best Patch</div>
-          <div class="hist-stat-val green">${best.toLocaleString()}</div>
         </div>
         ${trend !== null ? `<div class="hist-stat">
           <div class="hist-stat-label">Trend</div>
@@ -910,7 +903,7 @@ function renderHistoryModal() {
   olderMajs.forEach(maj => {
     const group  = byMajor[maj];
     const maxVal = Math.max(...group.map(d => d.f2p[res]), 1);
-    const { avg, best, trend } = sectionStats(group);
+    const { avg, trend } = sectionStats(group);
     const trendClass = trend === null ? "" : trend >= 0 ? "up" : "down";
     const trendLabel = trend === null ? "—" : (trend >= 0 ? "▲ " : "▼ ") + Math.abs(trend).toLocaleString();
     const uid = `acc-${maj}`;
@@ -921,7 +914,6 @@ function renderHistoryModal() {
         <div class="hist-accordion-meta">
           <span class="hist-accordion-stat">${group.length} patch${group.length>1?"es":""}</span>
           <span class="hist-accordion-stat">Avg <strong>${avg.toLocaleString()}</strong></span>
-          <span class="hist-accordion-stat">Best <strong>${best.toLocaleString()}</strong></span>
           ${trend !== null ? `<span class="hist-accordion-stat ${trendClass}">${trendLabel}</span>` : ""}
         </div>
         <span class="hist-accordion-chevron" id="chv-${uid}">▼</span>
